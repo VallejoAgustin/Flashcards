@@ -49,7 +49,8 @@ class ViewController: UIViewController {
     }
     
     func updateFlashcard(question: String, answer: String){
-        
+        frontLabel.text = question
+        btnTwo.setTitle(answer, for: .normal)
     }
     
     @IBAction func didTapBtnOne(_ sender: Any) {
