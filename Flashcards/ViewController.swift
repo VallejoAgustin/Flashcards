@@ -48,6 +48,10 @@ class ViewController: UIViewController {
         frontLabel.isHidden = !frontLabel.isHidden
     }
     
+    func updateFlashcard(question: String, answer: String){
+        
+    }
+    
     @IBAction func didTapBtnOne(_ sender: Any) {
         btnOne.isHidden = true
     }
@@ -58,6 +62,13 @@ class ViewController: UIViewController {
     
     @IBAction func didTapBtnThree(_ sender: Any) {
         btnThree.isHidden = true
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let navigationController = segue.destination as! UINavigationController
+        let creationController = navigationController.topViewController as! CreationViewController
+        
+        creationController.flashcardsController = self
     }
     
     //trying to commit w/ git global config as me
