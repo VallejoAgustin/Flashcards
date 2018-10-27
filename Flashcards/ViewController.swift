@@ -50,6 +50,7 @@ class ViewController: UIViewController {
     
     func updateFlashcard(question: String, answer: String){
         frontLabel.text = question
+        backLabel.text = answer
         btnTwo.setTitle(answer, for: .normal)
     }
     
@@ -70,6 +71,11 @@ class ViewController: UIViewController {
         let creationController = navigationController.topViewController as! CreationViewController
         
         creationController.flashcardsController = self
+        
+        if(segue.identifier == "EditSegue"){
+            creationController.initialQuestion = frontLabel.text!
+            creationController.initialAnswer = backLabel.text!
+        }
     }
     
     //trying to commit w/ git global config as me
