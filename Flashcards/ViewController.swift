@@ -118,6 +118,42 @@ class ViewController: UIViewController {
         updatePrevNextButtons()
     }
     
+    @IBAction func didTapOnDelete(_ sender: Any) {
+        let alert = UIAlertController(title: "Delete flashcards", message: "Are you sure you want to delete this flashcard?", preferredStyle: .actionSheet)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive){ action in self.deleteCurrentFlashcard()
+        }
+        
+        alert.addAction(deleteAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
+    }
+    
+    func deleteCurrentFlashcard(){
+        //dont want the user to delete the only card
+        if(flashcards.count == 1){
+            let alert = UIAlertController(title: "Delete only flashcard", message: "Sorry, you cannot delete the only flashcard.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ok", style: .default)
+            alert.addAction(okAction)
+            
+            present(alert, animated: true)
+        }
+        else{
+            flashcards.remove(at: currentIndex)
+            
+            if currentIndex > flashcards.count - 1 {
+                currentIndex = flashcards.count - 1
+            }
+            
+            updateLabels()
+            updatePrevNextButtons()
+            saveAllFlashcardsToDisk()
+        }
+    }
+    
     func updatePrevNextButtons(){
         if currentIndex == flashcards.count - 1 {
             nextButton.isEnabled = false

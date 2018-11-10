@@ -1,5 +1,22 @@
 ## Flashcards
 
+## Lab 3
+
+### App Description
+The app allows users to view a default question and answer if none existed in memory. The app allows users to view all flashcards that exist on the device through the use of 'Previous' and 'Next' buttons. The app allows users to add, edit, and delete cards. The app saves all questions and answers in memory, to be available whenever.
+
+### App Walk-though
+<img src="https://i.imgur.com/f89e8Aa.gif" width=200><br>
+
+## Required
+- [x ] User can browse through multiple flashcards
+- [x ] User can re-open the app and see previously created flashcards
+- [ x] Push code to GitHub
+## Optional
+- [x ] User can delete a flashcard
+- [ ] User can edit existing flashcard
+- [ ] User can store multiple choice questions
+
 ## Lab 2
 
 ### App Description
