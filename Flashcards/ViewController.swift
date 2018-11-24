@@ -68,7 +68,33 @@ class ViewController: UIViewController {
 
     //still allows for revealing answer functionality
     @IBAction func didTapOnFlashcard(_ sender: Any) {
-        frontLabel.isHidden = !frontLabel.isHidden
+        flipFlashcard()
+    }
+    
+    //flips the flashcard using a transition and closure code
+    func flipFlashcard(){
+        //frontLabel.isHidden = !frontLabel.isHidden
+        
+        UIView.transition(with: card, duration: 0.3, options: .transitionFlipFromRight, animations: {
+            self.frontLabel.isHidden = !self.frontLabel.isHidden
+        })
+    }
+    
+    //for animating cards in and out (uses same card)
+    func animateCardOut(direction: Float){
+        UIView.animate(withDuration: 0.3, animations: {
+            self.card.transform = CGAffineTransform.identity.translatedBy(x: CGFloat(-300.0 * direction), y: 0.0)},completion: {finished in
+                self.animateCardIn(direction: direction)
+                self.updateLabels()
+        })
+    }
+    
+    func animateCardIn(direction: Float){
+        card.transform = CGAffineTransform.identity.translatedBy(x: CGFloat(300.0 * direction), y: 0.0)
+        
+        UIView.animate(withDuration: 0.3){
+            self.card.transform = CGAffineTransform.identity
+        }
     }
     
     func updateFlashcard(question: String, answer: String){
@@ -104,8 +130,8 @@ class ViewController: UIViewController {
     @IBAction func didTapOnPrev(_ sender: Any) {
         currentIndex -= 1
         
-        updateLabels()
-        
+        //updateLabels()
+        animateCardOut(direction: -1.0)
         updatePrevNextButtons()
     }
     
@@ -113,8 +139,8 @@ class ViewController: UIViewController {
         currentIndex += 1
         
         //update card
-        updateLabels()
-        
+        //updateLabels()
+        animateCardOut(direction: 1.0)
         updatePrevNextButtons()
     }
     
